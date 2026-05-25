@@ -1,4 +1,4 @@
-name: Mening Birinchi CI
+name: Python Test CI
 
 on:
   push:
@@ -6,17 +6,18 @@ on:
       - main
 
 jobs:
-  run-python:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Kodni yuklab olish
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Pythonni sozlash
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Kodni ishga tushirish
-        run: python app.py
+      - name: Test kutubxonasini o'rnatish
+        run: pip install pytest
+
+      - name: Testlarni ishga tushirish
+        run: pytest
